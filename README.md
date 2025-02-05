@@ -1,6 +1,6 @@
-# 🎥 StreamFlow - Your Ultimate Movie Streaming App
+# 🎥 CinemaTi - Your Ultimate Movie Streaming App
 
-StreamFlow is a cutting-edge movie streaming application designed to provide users with seamless access to a vast catalog of films, personalized recommendations, and interactive features. Whether you're a movie buff or a casual viewer, StreamFlow has something for everyone!
+CinemaTi is a cutting-edge movie streaming application designed to provide users with seamless access to a vast catalog of films, personalized recommendations, and interactive features. Whether you're a movie buff or a casual viewer, StreamFlow has something for everyone!
 
 ---
 
