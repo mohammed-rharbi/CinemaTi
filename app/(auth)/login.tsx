@@ -58,6 +58,7 @@ const Login: React.FC = () => {
 
     return (
 
+        
         <LinearGradient
         colors={['#0F172A', '#1E293B']}
         style={styles.container}
