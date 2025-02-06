@@ -5,15 +5,7 @@ import React, { useEffect , useState } from 'react';
 import axiosInstance from '~/lib/apiClient';
 import { replaceIp } from '~/lib/helper';
 import { useRouter } from 'expo-router';
-
-
-interface Movie {
-  _id: string;
-  title: string;
-  image: any;
-  gen: string;
-  duration: number;
-}
+import { Movie } from '~/lib/types';
 
 export default function Home() {
 
@@ -22,7 +14,6 @@ export default function Home() {
   const router = useRouter()
 
 
-  
   useEffect(()=>{
 
     const fetchData = async () => {

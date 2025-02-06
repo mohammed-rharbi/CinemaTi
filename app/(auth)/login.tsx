@@ -5,13 +5,9 @@ import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import axiosInstance from '~/lib/apiClient';
+import { Errors } from '~/lib/types';
 
-interface Errors {
 
-    email?: string;
-    password?: string;
-
-}
 
 const Login: React.FC = () => {
 

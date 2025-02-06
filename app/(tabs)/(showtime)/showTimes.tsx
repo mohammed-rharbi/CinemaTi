@@ -1,39 +1,19 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, ActivityIndicator,} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import axiosInstance from "~/lib/apiClient";
 import { replaceIp } from "~/lib/helper";
+import { ShowTime } from "~/lib/types";
 
-interface ShowTime {
-  _id: string;
-  movie: {
-    title: string;
-    image: string;
-    duration: number;
-  };
-  time: Date;
-  room: {
-    name: string;
-    type: string;
-  };
-  price: number;
-}
 
 const ShowTimesScreen = () => {
   const [showTimes, setShowTimes] = useState<ShowTime[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  
   useEffect(() => {
     const getShowTimes = async () => {
       setLoading(true);

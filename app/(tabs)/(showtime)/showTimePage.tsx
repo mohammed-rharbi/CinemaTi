@@ -3,21 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import axiosInstance from '~/lib/apiClient';
 import { replaceIp } from '~/lib/helper';
+import { ShowTime } from '~/lib/types';
 
-interface ShowTime {
-  _id: string;
-  movie: {
-    title: string;
-    image: string;
-    duration: number;
-  };
-  time: Date;
-  room: {
-    name: string;
-    type: string;
-  };
-  price: number;
-}
 
 const ShowTimeDetailsScreen = () => {
   const { showTimeId } = useLocalSearchParams<{ showTimeId: string }>();

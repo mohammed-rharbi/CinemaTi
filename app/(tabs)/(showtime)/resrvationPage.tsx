@@ -1,16 +1,6 @@
 import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  ActivityIndicator,
-  ScrollView,
-  Animated,
-  Easing,
-} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ActivityIndicator, ScrollView, Animated, Easing } from 'react-native';
 import axiosInstance from '~/lib/apiClient';
 import { replaceIp } from '~/lib/helper';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -146,12 +136,12 @@ const ShowTimeDetailsScreen = () => {
                           (s) => s.row === seat.row && s.seatNumber === seat.seatNumber
                         )
                       ? require('~/assets/seat.jpg')
-                      : require('~/assets/seat.jpg')
+                      : require('~/assets/icon.png')
                   }
                   style={styles.seatImage}
                 />
               </TouchableOpacity>
-              
+
             ))}
           </ScrollView>
           <Text style={styles.selectedSeatsText}>

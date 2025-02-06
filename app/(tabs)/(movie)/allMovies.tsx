@@ -4,14 +4,7 @@ import { useRouter } from 'expo-router';
 import axiosInstance from '~/lib/apiClient';
 import { replaceIp } from '~/lib/helper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-interface Movie {
-    _id: string;
-    title: string;
-    image: any;
-    gen: string;
-    duration: number;
-}
+import { Movie } from '~/lib/types';
 
 const MovieList = () => {
     const router = useRouter()

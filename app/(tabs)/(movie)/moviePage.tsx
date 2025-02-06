@@ -5,21 +5,9 @@ import { useEffect, useState } from "react";
 import axiosInstance from "~/lib/apiClient";
 import { useLocalSearchParams } from "expo-router";
 import { replaceIp } from "~/lib/helper";
+import { Movie } from "~/lib/types";
 
 const { width } = Dimensions.get("window");
-
-
-interface Movie {
-    _id: string;
-    title: string;
-    image: any;
-    gen: string;
-    duration: number;
-    relseDate: string;
-    description: string;
-    deroctor: string
-  }
-  
 
 const MovieDetailsScreen = () => {
 
