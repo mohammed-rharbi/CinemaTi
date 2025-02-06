@@ -2,7 +2,8 @@ import { Stack } from 'expo-router';
 import { StyleSheet, View, ScrollView, TouchableOpacity, Image, Text } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React, { useEffect , useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '~/lib/apiClient';
+import { replaceIp } from '~/lib/helper';
 
 
 interface Movie {
@@ -26,7 +27,7 @@ export default function Home() {
 
   try{
 
-    const response = await axios.get('http://localhost:5000/api/movie/getLatestMovies');
+    const response = await axiosInstance.get('/movie/getLatestMovies');
     setMovies(response.data.latestMovies);
 
   }catch(error){
@@ -61,15 +62,16 @@ export default function Home() {
         </View>
 
 
+      <View>
         <Text style={styles.sectionTitle}>Now Showing</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.movieScroll}>
           {movies.map((movie) => (
             <TouchableOpacity key={movie._id} style={styles.movieCard}>
               <Image
-                source={movie.image}
+                source={{uri : replaceIp(movie.image , process.env.IP as string)}}
                 style={styles.movieImage}
               />
-              <Text style={styles.movieTitle}>Movie Title {movie.title}</Text>
+              <Text style={styles.movieTitle}>{movie.title}</Text>
               <Text style={styles.movieGenre}>{movie.gen} • 🕒{movie.duration} m</Text>
               <View style={styles.ratingContainer}>
                 <MaterialCommunityIcons name="star" size={16} color="#FFD700" />
@@ -78,8 +80,10 @@ export default function Home() {
             </TouchableOpacity>
           ))}
         </ScrollView>
+        </View> 
 
 
+      <View>
         <Text style={styles.sectionTitle}>Coming Soon</Text>
         {[1, 2].map((item) => (
           <TouchableOpacity key={item} style={styles.comingSoonCard}>
@@ -100,8 +104,10 @@ export default function Home() {
             </View>
           </TouchableOpacity>
         ))}
+      </View>
 
 
+        <View>
         <Text style={styles.sectionTitle}>Categories</Text>
         <View style={styles.categoryContainer}>
           {['Action', 'Comedy', 'Horror', 'Drama'].map((genre) => (
@@ -114,6 +120,7 @@ export default function Home() {
               <Text style={styles.categoryText}>{genre}</Text>
             </TouchableOpacity>
           ))}
+        </View>
         </View>
 
       </ScrollView>

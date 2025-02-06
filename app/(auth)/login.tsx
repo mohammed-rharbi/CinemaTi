@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
+import axiosInstance from '~/lib/apiClient';
 
 interface Errors {
 
@@ -41,9 +42,9 @@ const Login: React.FC = () => {
         if (!validateForm()) return;
 
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/login', {
-                email,
-                password,
+            const res = await axiosInstance.post( 'auth/login' , {
+                email: email,
+                password: password,
             });
 
             if (res.status === 200 || res.status === 201) {
@@ -51,7 +52,7 @@ const Login: React.FC = () => {
                 router.push('/Home');
             }
         } catch (error: any) {
-            const message = error.response?.data?.message || 'Registration failed';
+            const message = error.response?.data?.message || 'login failed';
             Alert.alert('Error', message);
         }
     };

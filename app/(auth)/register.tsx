@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
+import axiosInstance from '~/lib/apiClient';
 
 interface Errors {
     username?: string;
@@ -56,7 +57,7 @@ const Register: React.FC = () => {
         if (!validateForm()) return;
 
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/register', {
+            const res = await axiosInstance.post('/auth/register', {
                 name: username,
                 email,
                 password,
