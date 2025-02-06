@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React, { useEffect , useState } from 'react';
 import axiosInstance from '~/lib/apiClient';
 import { replaceIp } from '~/lib/helper';
+import { useRouter } from 'expo-router';
 
 
 interface Movie {
@@ -18,9 +19,10 @@ export default function Home() {
 
   const [movies, setMovies] = useState<Movie[]>([])
 
+  const router = useRouter()
+
 
   
-
   useEffect(()=>{
 
     const fetchData = async () => {
@@ -66,7 +68,7 @@ export default function Home() {
         <Text style={styles.sectionTitle}>Now Showing</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.movieScroll}>
           {movies.map((movie) => (
-            <TouchableOpacity key={movie._id} style={styles.movieCard}>
+            <TouchableOpacity key={movie._id} style={styles.movieCard} onPress={()=> router.push(`/moviePage?movieId=${movie._id}`)}>
               <Image
                 source={{uri : replaceIp(movie.image , process.env.IP as string)}}
                 style={styles.movieImage}
@@ -125,7 +127,7 @@ export default function Home() {
 
       </ScrollView>
 
-      <TouchableOpacity style={styles.fab}>
+      <TouchableOpacity style={styles.fab} onPress={()=> router.push('/showTimes')}>
         <MaterialCommunityIcons name="ticket" size={28} color="#fff" />
       </TouchableOpacity>
     </>
