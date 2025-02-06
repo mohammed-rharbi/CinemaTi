@@ -5,6 +5,29 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { useRouter } from 'expo-router';
 
+
+const movies = [
+  {
+    id: "1",
+    title: "Inception",
+    imageUrl: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    rate:'8.3'
+  },
+  {
+    id: "2",
+    title: "The Dark Knight",
+    imageUrl: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    rate:'9.7'
+  },
+  {
+    id: "3",
+    title: "Pulp Fiction",
+    imageUrl:
+      "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+      rate:'9.2'
+  },
+]
+
 export default function Landing() {
 
 
@@ -59,20 +82,22 @@ export default function Landing() {
 
           <Text style={styles.sectionTitle}>Trending Now</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.movieScroll}>
-            {[1, 2, 3].map((item) => (
-              <View key={item} style={styles.movieCard}>
+
+            {movies.map((item) => (
+              <View key={item.id} style={styles.movieCard}>
                 <Image
-                  source={{ uri: `https://i.pinimg.com/474x/5d/0e/ea/5d0eea0f99f19fa474b90374f0347162.jpg` }}
+                  source={{ uri: `${item.imageUrl}` }}
                   style={styles.moviePoster}
                 />
                 <View style={styles.posterOverlay}>
-                  <Text style={styles.movieTitle}>Movie Title {item}</Text>
+                  <Text style={styles.movieTitle}>Movie Title {item.title}</Text>
                   <View style={styles.ratingBadge}>
                     <MaterialCommunityIcons name="star" size={14} color="#FBBF24" />
-                    <Text style={styles.ratingText}>8.{item}</Text>
+                    <Text style={styles.ratingText}>{item.rate}</Text>
                   </View>
                 </View>
               </View>
+
             ))}
           </ScrollView>
 
