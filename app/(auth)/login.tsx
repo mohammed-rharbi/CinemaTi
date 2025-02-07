@@ -45,7 +45,7 @@ const Login: React.FC = () => {
             if (res.status === 200 || res.status === 201) {
 
                 await AsyncStorage.setItem('userId', res.data.user._id);
-                await AsyncStorage.setItem('token', res.data.token);
+                await AsyncStorage.setItem('token', res.data.token);                
                 router.push('/Home');
             }
         } catch (error: any) {

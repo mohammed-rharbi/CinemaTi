@@ -9,7 +9,7 @@ export default function TabLayout() {
         tabBarInactiveTintColor: '#9CA3AF', 
         tabBarStyle: {
           backgroundColor: '#121212', 
-          height: 80,
+          height: 60,
           borderTopWidth: 0,
           elevation: 10,
           shadowColor: '#000',
@@ -18,7 +18,7 @@ export default function TabLayout() {
           shadowOffset: { width: 0, height: -4 },
         },
         tabBarItemStyle: {
-          paddingVertical: 8,
+          paddingVertical: 20,
         },
         tabBarIcon: ({ focused, color }) => {
           const iconSize = 28;
@@ -34,7 +34,7 @@ export default function TabLayout() {
             case '(showtime)/showTimes':
               iconName = focused ? 'calendar' : 'calendar-outline';
               break;
-            case '(tabs)/profile':
+            case 'profile':
               iconName = focused ? 'person' : 'person-outline';
               break;
           }
