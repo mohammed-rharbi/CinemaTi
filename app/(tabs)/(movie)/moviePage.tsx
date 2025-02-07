@@ -7,19 +7,26 @@ import { useLocalSearchParams } from "expo-router";
 import { replaceIp } from "~/lib/helper";
 import { Movie } from "~/lib/types";
 
-const { width } = Dimensions.get("window");
 
 const MovieDetailsScreen = () => {
 
     const [movie, setMovie] = useState<Movie | null>(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState('');
 
     const { movieId } = useLocalSearchParams();
 
     useEffect(() => {
+
         const fetchMovie = async () => {
+
+            setLoading(true)
             try {
+
+                if(!movieId){
+                    setError("Failed to fetch movie details.");
+                    return 
+                }
                 const res = await axiosInstance.get(`/movie/getMovie/${movieId}`);
                 setMovie(res.data.movie);
             } catch (err: any) {
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#121212",
     },
     imageContainer: {
-        height: width * 1.5,
+        height: 'auto',
         width: "100%",
     },
     image: {

@@ -59,7 +59,10 @@ export default function Landing() {
             </TouchableOpacity>
           </View>
 
+        <View>
           <Text style={styles.sectionTitle}>Trending Now</Text>
+        </View>
+
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.movieScroll}>
 
             {movies.map((item) => (
