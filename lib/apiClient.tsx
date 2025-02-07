@@ -14,6 +14,7 @@ axiosInstance.interceptors.request.use(
     //   config.headers['Content-Type']='multipart/form-data'
     // }
     config.headers['Content-Type'] = 'application/json'
+    config.headers.Authorization = `Bearer ${token}`;
 
     return config;
   },
