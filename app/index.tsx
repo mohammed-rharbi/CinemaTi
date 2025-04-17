@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { useRouter } from 'expo-router';
 import { movies } from '~/lib/mocks';
+import ColorButton from '~/components/color_button';
 
 
 export default function Landing() {
@@ -38,6 +39,8 @@ export default function Landing() {
             </TouchableOpacity>
           </View>
 
+          
+          <ColorButton/>
 
           <View style={styles.hero}>
             <Text style={styles.heroTitle}>

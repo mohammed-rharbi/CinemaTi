@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import axiosInstance from "~/lib/apiClient";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { replaceIp } from "~/lib/helper";
 import { Movie } from "~/lib/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -26,31 +26,32 @@ const MovieDetailsScreen = () => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState('');
   const { movieId } = useLocalSearchParams();
-  const [userId , setUserId] = useState('')
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        if (!movieId) {
-          setError("Invalid movie ID");
-          return;
-        }
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      if (!movieId) {
+        setError("Invalid movie ID");
+        return;
+      }
 
         const movieRes = await axiosInstance.get(`/movie/getMovie/${movieId}`);
-        setMovie(movieRes.data.movie);
-        setLikeCount(movieRes.data.movie.likes || 0);
+      setMovie(movieRes.data.movie);
+      setLikeCount(movieRes.data.movie.likes || 0);
 
 
-        const commentsRes = await axiosInstance.get(`/comments/getComments/${movieId}`);
-        setComments(commentsRes.data.comments);
-      } catch (err: any) {
-        setError(err.message || "Failed to fetch data");
-      } finally {
-        setLoading(false);
-      }
-    };
+      const commentsRes = await axiosInstance.get(`/comments/getComments/${movieId}`);
+      setComments(commentsRes.data.comments);
+    } catch (err: any) {
+      setError(err.message || "Failed to fetch data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    
 
     fetchData();
   }, [movieId]);
@@ -90,8 +91,10 @@ const MovieDetailsScreen = () => {
   
     try {
       const res = await axiosInstance.post('/comments/addComment', body);
+      
       setComments([...comments, res.data.comment]);
       setNewComment('');
+      
     } catch (err) {
       console.error("Failed to post comment:", err);
     }
@@ -154,7 +157,7 @@ const MovieDetailsScreen = () => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.watchButton}>
+        <TouchableOpacity style={styles.watchButton} onPress={() => router.push(`/watchMovie?movieId=${movie._id}`)}>
           <Ionicons name="play" size={24} color="white" />
           <Text style={styles.watchButtonText}>Watch Now</Text>
         </TouchableOpacity>

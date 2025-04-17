@@ -26,7 +26,8 @@ export interface ShowTime {
     duration: number;
     relseDate: string;
     description: string;
-    deroctor: string
+    deroctor: string;
+    video:any
   }
   
 
